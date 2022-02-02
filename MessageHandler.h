@@ -1,3 +1,4 @@
+#pragma once
 #include <array>
 
 /*
@@ -6,11 +7,16 @@
 constexpr int NUM_OF_MESSAGES = 10;
 
 /*
+* Defining the size of data array in message.
+*/
+constexpr int DATA_SIZE = 255;
+
+/*
 * Message structure.
 */
 typedef struct {
-    unsigned int len;
-    std::array<unsigned int, 255> data = {};
+    uint8_t len;
+    std::array<uint8_t, DATA_SIZE> data = {};
 } message_t;
 
 /*
@@ -34,13 +40,13 @@ void DeleteMessage(message_t* mess);
 * Message can be retreived by the destination thread.
 * If sending is successful return 0, othervise return -1.
 */
-int SendMessage(unsigned int destination, message_t* mess);
+int SendMessage(uint8_t destination, message_t* mess);
 
 /*
 * Function to receive message by providing thread id.
 * If receiving is successful return 0, otherwise return -1.
 */
-int ReceiveMessage(unsigned int id, message_t** mess);
+int ReceiveMessage(uint8_t id, message_t** mess);
 
 /*
 * Get status of all messages in the message pool.

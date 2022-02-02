@@ -37,9 +37,9 @@ void* MessagingThread(void *arg)
         else {
             if (ReceiveMessage(id, &message) == 0) {
                 status = 0;
-                std::cout << "Id: " << id << "| Message receiving succeed. Id: " << id << ", length: " << message->len << ", data: ";
+                std::cout << "Id: " << id << "| Message receiving succeed. Id: " << id << ", length: " << static_cast<unsigned int>(message->len) << ", data: ";
                 for (auto el = 0; el < message->len; ++el) {
-                    std::cout << message->data.at(el);
+                    std::cout << static_cast<unsigned int>(message->data.at(el));
                 }
                 std::cout << std::endl;
                 DeleteMessage(message);
